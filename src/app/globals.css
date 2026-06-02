@@ -1,0 +1,259 @@
+/* ════════════════════════════════════════════════════════════
+   Animals — Globals
+   Imports the shared design system from components-library,
+   then declares Animals-specific accent tokens and domain styles.
+   ════════════════════════════════════════════════════════════ */
+
+@import "@rodrigo-barraza/components-library/base.css";
+
+/* ── Animals Accent Tokens ───────────────────────────────── */
+
+:root {
+  --accent-primary: oklch(0.65 0.18 160);
+  --calculated-accent-primary-hover: oklch(0.58 0.2 158);
+  --calculated-accent-primary-glow: oklch(0.65 0.18 160 / 0.35);
+  --calculated-accent-primary-subtle: oklch(0.65 0.18 160 / 0.1);
+  --calculated-shadow-glow: 0 0 20px oklch(0.65 0.18 160 / 0.15);
+  --animals-50: oklch(0.96 0.04 155);
+  --animals-100: oklch(0.88 0.08 155);
+  --animals-200: oklch(0.78 0.12 158);
+  --animals-300: oklch(0.70 0.15 160);
+  --animals-400: oklch(0.62 0.18 160);
+  --animals-500: oklch(0.55 0.16 162);
+  --animals-600: oklch(0.48 0.14 165);
+  --color-least-concern: oklch(0.65 0.18 160);
+  --color-near-threatened: oklch(0.72 0.14 90);
+  --color-vulnerable: oklch(0.70 0.16 70);
+  --color-endangered: oklch(0.60 0.18 40);
+  --color-critically-endangered: oklch(0.55 0.22 25);
+  --color-extinct-in-wild: oklch(0.50 0.14 310);
+  --color-extinct: oklch(0.50 0.02 0);
+  --animals-gradient: linear-gradient(135deg, var(--animals-400), var(--animals-500));
+  --animals-gradient-subtle: linear-gradient(
+    135deg,
+    oklch(0.65 0.18 160 / 0.1),
+    oklch(0.55 0.16 162 / 0.08)
+  );
+}
+
+/* ── Page Content ──────────────────────────────────────────── */
+
+.page-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 32px;
+}
+
+@media (max-width: 1024px) {
+  .page-content {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    overflow: auto;
+    height: auto;
+    min-height: 100dvh;
+  }
+  .page-wrapper {
+    flex-direction: column;
+    height: auto;
+    min-height: 100dvh;
+    overflow: visible;
+  }
+  .page-content {
+    padding: 16px;
+    overflow: visible;
+    flex: 1;
+  }
+}
+
+/* ── Conservation Status Badges ──────────────────────────── */
+
+.conservation-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.conservation-badge.least-concern-status {
+  background: oklch(0.65 0.18 160 / 0.15);
+  color: var(--color-least-concern);
+}
+.conservation-badge.near-threatened-status {
+  background: oklch(0.72 0.14 90 / 0.15);
+  color: var(--color-near-threatened);
+}
+.conservation-badge.vulnerable-status {
+  background: oklch(0.70 0.16 70 / 0.15);
+  color: var(--color-vulnerable);
+}
+.conservation-badge.endangered-status {
+  background: oklch(0.60 0.18 40 / 0.15);
+  color: var(--color-endangered);
+}
+.conservation-badge.critically-endangered-status {
+  background: oklch(0.55 0.22 25 / 0.15);
+  color: var(--color-critically-endangered);
+}
+.conservation-badge.extinct-in-wild-status {
+  background: oklch(0.50 0.14 310 / 0.15);
+  color: var(--color-extinct-in-wild);
+}
+.conservation-badge.extinct-status {
+  background: oklch(0.50 0.02 0 / 0.15);
+  color: var(--color-extinct);
+}
+
+/* ── Class Badge ─────────────────────────────────────────── */
+
+.class-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  background: var(--background-elevated);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ── Animal Grid ─────────────────────────────────────────── */
+
+.animal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 12px;
+}
+
+/* ── Animal Card ─────────────────────────────────────────── */
+
+.animal-card {
+  position: relative;
+  background: var(--background-surface);
+  border: 1px solid var(--calculated-border-color);
+  border-radius: var(--border-radius-sm);
+  padding: 16px;
+  transition:
+    border-color var(--transition-base),
+    box-shadow var(--transition-base),
+    transform var(--transition-base);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.animal-card:hover {
+  border-color: var(--calculated-border-medium);
+  box-shadow:
+    var(--calculated-shadow-md),
+    0 0 30px oklch(0.65 0.18 160 / 0.15);
+  transform: translateY(-2px);
+}
+
+.animal-card .animal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.animal-card .animal-common-name {
+  font-weight: 700;
+  font-size: var(--font-size-base);
+}
+
+.animal-card .animal-scientific-name {
+  font-size: var(--font-size-sm);
+  font-style: italic;
+  color: var(--text-muted);
+  margin-block-start: 2px;
+}
+
+.animal-card .animal-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.animal-emoji {
+  font-size: 28px;
+  line-height: 1;
+}
+
+.animal-description {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  margin: 8px 0 12px;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.animal-card-glow {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background: radial-gradient(
+    ellipse at 50% 0%,
+    oklch(0.65 0.18 160 / 0.15),
+    transparent 70%
+  );
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.animal-card:hover .animal-card-glow {
+  opacity: 1;
+}
+
+/* ── Section ───────────────────────────────────────────────── */
+
+.section {
+  margin-bottom: 32px;
+}
+.section .section-title {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--calculated-border-color);
+}
+
+/* ── Stats Grid ────────────────────────────────────────────── */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+/* ── Placeholder ───────────────────────────────────────────── */
+
+.placeholder-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  background: var(--background-surface);
+  border: 1px solid var(--calculated-border-color);
+  border-radius: var(--border-radius-sm);
+  padding: 40px;
+}

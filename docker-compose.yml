@@ -1,0 +1,37 @@
+services:
+  animals-client:
+    image: animals-client:latest
+    container_name: animals-client
+    restart: unless-stopped
+    ports:
+      - "3016:3016"
+    env_file:
+      - .env
+    environment:
+      - TZ=America/Los_Angeles
+    volumes:
+      - /usr/share/zoneinfo/America/Los_Angeles:/etc/localtime:ro
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "wget",
+          "--no-verbose",
+          "--tries=1",
+          "-O",
+          "/dev/null",
+          "http://localhost:3016/",
+        ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    deploy:
+      resources:
+        limits:
+          memory: 256M
