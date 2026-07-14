@@ -1,5 +1,7 @@
 // ─── Animals Service Client ─────────────────────────────────
 
+import { createApiClient } from "@rodrigo-barraza/utilities-library";
+
 import { ANIMALS_SERVICE_URL } from "@/config";
 
 interface AnimalResponse {
@@ -42,6 +44,8 @@ interface Sighting {
   createdAt: string;
 }
 
+const animalsApi = createApiClient(ANIMALS_SERVICE_URL ?? "");
+
 export async function fetchAnimals(params?: {
   animalClass?: string;
   conservationStatus?: string;
@@ -56,15 +60,11 @@ export async function fetchAnimals(params?: {
   if (params?.limit) searchParameters.set("limit", String(params.limit));
   if (params?.offset) searchParameters.set("offset", String(params.offset));
 
-  const response = await fetch(`${ANIMALS_SERVICE_URL}/animals?${searchParameters}`);
-  if (!response.ok) throw new Error(`Failed to fetch animals: ${response.status}`);
-  return response.json();
+  return animalsApi.get<AnimalResponse>(`/animals?${searchParameters}`);
 }
 
 export async function fetchAnimal(identifier: string): Promise<Animal> {
-  const response = await fetch(`${ANIMALS_SERVICE_URL}/animals/${identifier}`);
-  if (!response.ok) throw new Error(`Failed to fetch animal: ${response.status}`);
-  return response.json();
+  return animalsApi.get<Animal>(`/animals/${identifier}`);
 }
 
 export async function fetchSightings(params?: {
@@ -77,9 +77,7 @@ export async function fetchSightings(params?: {
   if (params?.limit) searchParameters.set("limit", String(params.limit));
   if (params?.offset) searchParameters.set("offset", String(params.offset));
 
-  const response = await fetch(`${ANIMALS_SERVICE_URL}/sightings?${searchParameters}`);
-  if (!response.ok) throw new Error(`Failed to fetch sightings: ${response.status}`);
-  return response.json();
+  return animalsApi.get<SightingResponse>(`/sightings?${searchParameters}`);
 }
 
 export type { Animal, AnimalResponse, Sighting, SightingResponse };
