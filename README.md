@@ -1,6 +1,8 @@
 # Animals Client
 
-Wildlife species tracker — species encyclopedia, sightings, habitats, and conservation.
+Helping animals worldwide — browse adoptable animals from shelters and rescues, and donate to animal charities around the world.
+
+The platform is an **aggregator + giving layer**: listings sync from Petfinder/RescueGroups (and direct partner shelters) via animals-service; donations go straight through Every.org / GlobalGiving, who handle all payment processing.
 
 ## Quick Start
 
@@ -10,16 +12,25 @@ npm install
 npm run dev
 ```
 
+Tip: run `npm run seed` in animals-service to get sample listings before any external API keys are configured.
+
 ## Pages
 
-| Path        | Description                                              |
-| ----------- | -------------------------------------------------------- |
-| `/`         | Dashboard — species overview, recent sightings, stats    |
+| Path                  | Description                                                        |
+| --------------------- | ------------------------------------------------------------------ |
+| `/`                   | Landing — hero, adopt/donate/shelter actions, stats, featured pets |
+| `/adopt`              | Browse adoptable animals — species chips, age/sex/size, search     |
+| `/adopt/[id]`         | Listing detail — photos, attributes, shelter card, adopt link      |
+| `/organizations`      | Shelters & rescues directory with search                           |
+| `/organizations/[id]` | Org profile + their adoptable animals                              |
+| `/donate`             | Giving — curated charity collections + live charity search         |
+| `/favorites`          | Saved animals (localStorage, no account needed)                    |
+| `/shelters`           | Pitch + self-serve interest form for shelters/rescues              |
 
 ## Tech Stack
 
 - **Framework:** Next.js 16 (React 19)
-- **Styling:** Vanilla CSS with emerald/nature dark theme
+- **Styling:** Vanilla CSS with emerald/nature theme (components-library base)
 - **Backend:** animals-service (port 5616)
 - **Secrets:** Vault service
 

@@ -13,9 +13,9 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "Animals — Wildlife Species Tracker",
+  title: "Animals — Adopt & Give",
   description:
-    "Wildlife species catalog and sighting tracker — species encyclopedia, sightings, habitats, and conservation",
+    "Helping animals worldwide — browse adoptable animals from shelters and rescues, and donate to animal charities around the world",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
