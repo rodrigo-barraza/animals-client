@@ -56,7 +56,7 @@ export default function SheltersPage() {
         <section className="section shelters-pitch">
           <div className="home-action-card static">
             <h2>🌍 Worldwide</h2>
-            <p>US/CA listings sync automatically from Petfinder and RescueGroups. Everywhere else, we partner with shelters directly — that's you.</p>
+            <p>US/CA listings sync automatically from Petfinder and RescueGroups. Everywhere else, we partner with shelters directly — that&apos;s you.</p>
           </div>
           <div className="home-action-card static">
             <h2>💸 Free, forever</h2>
