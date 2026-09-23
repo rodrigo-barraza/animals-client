@@ -40,7 +40,7 @@ Tip: run `npm run seed` in animals-service to get sample listings before any ext
 npm run start         # Start production server (port 3016)
 npm run dev           # Start dev server (port 3016)
 npm run build         # Build for production
-npm run lint          # Run ESLint
+npm run lint          # Run oxlint (.oxlintrc.json)
 npm run lint:fix      # Auto-fix lint issues
 npm run format        # Format with Prettier
 npm run format:check  # Check formatting
